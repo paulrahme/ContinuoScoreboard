@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ContinuoScoreboard.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="800"
+        x:Class="ContinuoScoreboard.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ContinuoScoreboard">
+
+    <!-- This DataContext is only for preview context inside the IDE -->
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="10,*,10,*,10" DataContext="{Binding ScoreViewModel}">
+        <HeaderedContentControl Header="{Binding Player1Name}" Grid.Column="1">
+            <Grid RowDefinitions="*,40" HorizontalAlignment="Right">
+                <TextBlock Grid.Row="0" FontSize="24" Text="{Binding Player1ScoreList}" HorizontalAlignment="Right"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Grid ColumnDefinitions="80,30,*">
+                        <TextBlock Grid.Column="0" FontSize="36" FontWeight="Bold" Text="{Binding Player1Total}" HorizontalAlignment="Right"/>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <Button Command="{Binding UndoPlayer1Score}"  Margin="0,0,10,0"><Image Source="/Assets/undo.png"/></Button>
+                            <TextBox FontSize="26" Text="{Binding Player1ScoreAmount}" Margin="0,0,10,0"/>
+                            <Button Content="Add" FontSize="26" Command="{Binding AddPlayer1Score}"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </HeaderedContentControl>
+        <HeaderedContentControl Header="{Binding Player2Name}" Grid.Column="3">
+        </HeaderedContentControl>
+    </Grid>
+</Window>
