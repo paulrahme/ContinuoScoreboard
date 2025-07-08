@@ -94,7 +94,7 @@ namespace ContinuoScoreboard.ViewModels
         {
             _score.AddScore(1, Player2ScoreAmount);
             Player2ScoreList = _score.GetScoreList(1);
-            Player1Total = _score.GetTotal(1);
+            Player2Total = _score.GetTotal(1);
         }
 
         public void UndoPlayer1Score()
@@ -103,6 +103,15 @@ namespace ContinuoScoreboard.ViewModels
             {
                 Player1ScoreList = _score.GetScoreList(0);
                 Player1Total = _score.GetTotal(0);
+            }
+        }
+
+        public void UndoPlayer2Score()
+        {
+            if (_score.RemoveLastScore(1))
+            {
+                Player2ScoreList = _score.GetScoreList(1);
+                Player2Total = _score.GetTotal(1);
             }
         }
 
